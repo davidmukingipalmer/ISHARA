@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="background" x2="0" y2="1">
+      <stop stop-color="#685747"/>
+      <stop offset="1" stop-color="#241e1a"/>
+    </linearGradient>
+    <linearGradient id="floor" x2="0" y2="1">
+      <stop stop-color="#514438"/>
+      <stop offset="1" stop-color="#211c19"/>
+    </linearGradient>
+    <linearGradient id="pedal" x2="1" y2="1">
+      <stop stop-color="#474746"/>
+      <stop offset=".5" stop-color="#1b1b1c"/>
+      <stop offset="1" stop-color="#333334"/>
+    </linearGradient>
+    <linearGradient id="switch" x2="0" y2="1">
+      <stop stop-color="#d8d5ce"/>
+      <stop offset=".45" stop-color="#858581"/>
+      <stop offset="1" stop-color="#373838"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#background)"/>
+  <path d="M0 510h1200v290H0z" fill="url(#floor)"/>
+  <ellipse cx="615" cy="667" rx="330" ry="53" fill="#100e0d" opacity=".62"/>
+  <path d="M0 510h1200" stroke="#b09a7d" stroke-opacity=".2" stroke-width="4"/>
+  <path d="M341 590 731 476 925 548 526 676z" fill="#111112" opacity=".55"/>
+  <path d="m355 535 403-120 167 60-408 126z" fill="url(#pedal)" stroke="#0e0e0f" stroke-width="9"/>
+  <path d="m386 531 369-109 119 43-375 114z" fill="#222223" stroke="#5d5a55" stroke-width="4"/>
+  <path d="m406 519 328-96 104 37-335 99z" fill="#302f2e" stroke="#c59b67" stroke-width="3"/>
+  <path d="m463 495 186-54 74 26-190 56z" fill="#1c1c1d" stroke="#696560" stroke-width="3"/>
+  <g fill="url(#switch)" stroke="#111112" stroke-width="5">
+    <ellipse cx="508" cy="477" rx="28" ry="12" transform="rotate(-16 508 477)"/>
+    <ellipse cx="595" cy="452" rx="28" ry="12" transform="rotate(-16 595 452)"/>
+    <ellipse cx="682" cy="427" rx="28" ry="12" transform="rotate(-16 682 427)"/>
+  </g>
+  <g fill="#c59b67">
+    <circle cx="450" cy="530" r="5"/>
+    <circle cx="762" cy="439" r="5"/>
+    <circle cx="519" cy="552" r="5"/>
+    <circle cx="832" cy="461" r="5"/>
+  </g>
+  <path d="M658 528c54 40 95 59 139 61 48 2 82 24 86 55 4 25-18 40-40 29-19-10-12-34 5-33" fill="none" stroke="#141415" stroke-width="11" stroke-linecap="round"/>
+  <rect x="853" y="650" width="45" height="23" rx="5" fill="#111112" stroke="#c59b67" stroke-width="3"/>
+  <path d="M400 608 749 502" stroke="#d7d1c6" stroke-opacity=".16" stroke-width="4"/>
+</svg>

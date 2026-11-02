@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISHARA STUDIO | Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-studio-900 text-studio-light antialiased selection:bg-studio-bronze selection:text-white">
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-studio-800 border border-studio-bronze/40 text-studio-light px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3">
+        <i class="fa-solid fa-circle-check text-studio-bronze text-xl"></i>
+        <div>
+            <h4 id="toast-title" class="font-bold text-sm">Notification</h4>
+            <p id="toast-msg" class="text-xs text-studio-muted">Action exécutée avec succès.</p>
+        </div>
+    </div>
+    <!-- Header / Navigation Bar -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-studio-900/90 backdrop-blur-md border-b border-studio-bronze/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo Brand -->
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="switchPage('home')"> 
+                <div class="w-10 h-10 rounded-xl bg-black border border-studio-bronze/40 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                    <img src="white.png" alt="Logo">
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-wider text-white">ISHARA STUDIO</span>
+                    <span class="block text-[9px] uppercase tracking-widest text-studio-bronze font-semibold">Pro Audio , Live recording & Streaming</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-7">
+                <button onclick="switchPage('home')" data-nav="home" class="nav-link text-sm font-medium transition-colors hover:text-studio-bronze text-studio-bronze">Home</button>
+                <button onclick="switchPage('about')" data-nav="about" class="nav-link text-sm font-medium transition-colors hover:text-studio-bronze text-studio-muted">About Us</button>
+                <button onclick="switchPage('services')" data-nav="services" class="nav-link text-sm font-medium transition-colors hover:text-studio-bronze text-studio-muted">Services</button>
+                <button onclick="switchPage('playlists')" data-nav="playlists" class="nav-link text-sm font-medium transition-colors hover:text-studio-bronze text-studio-muted">YouTube Playlists</button>
+                <button onclick="switchPage('booking')" data-nav="booking" class="nav-link text-sm font-medium transition-colors hover:text-studio-bronze text-studio-muted">Book Studio</button>
+            </nav>
+
+            <!-- Header Utilities -->
+            <div class="hidden lg:flex items-center space-x-4">
+                <a href="https://www.facebook.com/share/p/1cw8daTV77/" target="_blank" class="w-9 h-9 rounded-full bg-studio-800 border border-studio-600 flex items-center justify-center text-blue-400 hover:bg-blue-600 hover:text-white transition" title="Facebook Page">
+                    <i class="fa-brands fa-facebook-f text-sm"></i>
+                </a>
+                <a href="https://www.youtube.com/@IsharaStudio1" target="_blank" class="w-9 h-9 rounded-full bg-studio-800 border border-studio-600 flex items-center justify-center text-red-500 hover:bg-red-600 hover:text-white transition" title="YouTube Channel">
+                    <i class="fa-brands fa-youtube text-sm"></i>
+                </a>
+                <button onclick="switchPage('booking')" class="bg-gradient-to-r from-studio-bronze to-amber-700 hover:from-studio-bronze/90 text-white font-semibold text-xs px-5 py-2.5 rounded-full shadow-lg shadow-studio-bronze/20 transition transform hover:-translate-y-0.5">
+                    Book Now
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="md:hidden flex items-center">
+                <button id="mobile-menu-btn" class="text-studio-muted hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-studio-800 border-b border-studio-600 px-6 py-5 space-y-3 shadow-2xl">
+            <button onclick="switchPage('home'); toggleMobileMenu();" data-nav="home" class="block w-full text-left font-medium text-studio-bronze py-2">Home</button>
+            <button onclick="switchPage('about'); toggleMobileMenu();" data-nav="about" class="block w-full text-left font-medium text-studio-muted py-2">About Us</button>
+            <button onclick="switchPage('services'); toggleMobileMenu();" data-nav="services" class="block w-full text-left font-medium text-studio-muted py-2">Services</button>
+            <button onclick="switchPage('playlists'); toggleMobileMenu();" data-nav="playlists" class="block w-full text-left font-medium text-studio-muted py-2">YouTube Playlists</button>
+            <button onclick="switchPage('booking'); toggleMobileMenu();" data-nav="booking" class="block w-full text-left font-medium text-studio-muted py-2">Book Studio</button>
+            <div class="flex space-x-4 pt-3 border-t border-studio-700">
+                <a href="https://www.facebook.com/share/p/1cw8daTV77/" target="_blank" class="text-blue-400 text-base"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.youtube.com/@IsharaStudio1" target="_blank" class="text-red-400 text-base"><i class="fa-brands fa-youtube"></i> YouTube</a>
+            </div>
+        </div>
+    </header>
+    <main id="app-content" class="min-h-screen pt-20">
+
+                <div class="page-transition">
+                    <!-- Hero Section -->
+                    <section class="relative py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                            <div class="lg:col-span-7 space-y-6">
+                                <div class="inline-flex items-center gap-2 bg-studio-bronze/10 border border-studio-bronze/30 px-3.5 py-1.5 rounded-full text-xs font-semibold text-studio-gold animate__animated animate__fadeInDown">
+                                    <i class="fa-solid fa-microphone-lines text-studio-bronze"></i> Ishara Studio • Professional Sound & Production
+                                </div>
+                                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-none animate__animated animate__fadeInUp">
+                                    Elevate Your Sound<br>
+                                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-studio-bronze to-amber-200">Create Your Masterpiece</span>
+                                </h1>
+                                <p class="text-studio-muted text-sm sm:text-base max-w-xl leading-relaxed animate__animated animate__fadeInUp" style="--animate-delay: 0.15s;">
+                                    Welcome to Ishara Studio. From live recording and event sound to rehearsal rooms, practice booths, instrument teaching, live streaming, and instrument & machine rentals.
+                                </p>
+                                <div class="flex flex-wrap gap-4 pt-2 animate__animated animate__fadeInUp" style="--animate-delay: 0.3s;">
+                                    <button onclick="switchPage('booking')" class="bg-gradient-to-r from-studio-bronze to-amber-700 hover:from-studio-bronze/90 text-white font-bold px-8 py-3.5 rounded-xl shadow-lg shadow-studio-bronze/30 transition transform hover:-translate-y-0.5 text-sm">
+                                        Book a Session
+                                    </button>
+                                    <button onclick="switchPage('playlists')" class="bg-studio-800 hover:bg-studio-700 text-white font-semibold px-8 py-3.5 rounded-xl border border-studio-600 transition flex items-center gap-2 text-sm">
+                                        <i class="fa-brands fa-youtube text-red-500"></i> YouTube Playlists
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="lg:col-span-5">
+                                <div class="bg-studio-800 p-6 sm:p-8 rounded-3xl border border-studio-bronze/30 shadow-2xl space-y-6 animate__animated animate__fadeInRight" style="--animate-delay: 0.2s;">
+                                    <div class="flex items-center justify-between pb-4 border-b border-studio-700">
+                                        <span class="text-xs font-bold uppercase tracking-wider text-studio-gold">Ishara Highlights</span>
+                                        <a href="https://www.youtube.com/@IsharaStudio1" target="_blank" class="text-red-400 text-xs font-semibold hover:underline flex items-center gap-1"><i class="fa-brands fa-youtube"></i> Channel</a>
+                                    </div>
+                                    <ul class="space-y-3.5 text-xs text-studio-light">
+                                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-studio-bronze"></i> Sound Mixing & Mastering</li>
+                                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-studio-bronze"></i> Musical Instruments Rental</li>
+                                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-studio-bronze"></i> Machines & Equipment Borrowing</li>
+                                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-studio-bronze"></i> Rehearsal & Practice Rooms</li>
+                                        <li class="flex items-center gap-3"><i class="fa-solid fa-check text-studio-bronze"></i> Music Instrument Teaching & Training</li>
+                                    </ul>
+                                    <a href="mailto:isharastudio1@gmail.com" class="block w-full text-center bg-studio-700 hover:bg-studio-600 text-white font-semibold py-3 rounded-xl transition text-xs">
+                                        <i class="fa-solid fa-envelope mr-1 text-studio-bronze"></i> isharastudio1@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Audio Player Bar -->
+                        <div class="mt-16 bg-studio-800 border border-studio-bronze/30 px-6 py-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl animate__animated animate__fadeInUp">
+                            <div class="flex items-center gap-4 w-full sm:w-auto">
+                                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=120&q=80" alt="Audio Preview" class="w-12 h-12 rounded-xl object-cover shadow">
+                                <div>
+                                    <h4 class="text-xs font-bold text-white">Ishara Live Session Mix</h4>
+                                    <p class="text-[11px] text-studio-muted">Ishara Studio Master</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-5 text-studio-light">
+                                <button onclick="showToast('Shuffle', 'Playlist shuffled.')" class="hover:text-studio-bronze transition"><i class="fa-solid fa-shuffle text-xs"></i></button>
+                                <button onclick="showToast('Previous', 'Previous track.')" class="hover:text-studio-bronze transition"><i class="fa-solid fa-backward-step"></i></button>
+                                <button id="play-btn" onclick="toggleAudio()" class="w-10 h-10 rounded-full bg-studio-bronze text-white flex items-center justify-center hover:scale-105 transition shadow-md">
+                                    <i id="play-icon" class="fa-solid fa-play"></i>
+                                </button>
+                                <button onclick="showToast('Next', 'Next track.')" class="hover:text-studio-bronze transition"><i class="fa-solid fa-forward-step"></i></button>
+                                <a href="https://www.youtube.com/@IsharaStudio1" target="_blank" class="text-red-400 hover:text-red-300" title="YouTube"><i class="fa-brands fa-youtube text-base"></i></a>
+                            </div>
+                            <div class="flex items-center gap-3 w-full sm:w-64">
+                                <span id="current-time" class="text-[10px] text-studio-muted">0:30</span>
+                                <div class="flex-1 bg-studio-700 h-1.5 rounded-full overflow-hidden cursor-pointer" onclick="seekAudio(event)">
+                                    <div id="progress-bar" class="bg-studio-bronze h-full w-[30%] transition-all"></div>
+                                </div>
+                                <span class="text-[10px] text-studio-muted">3:45</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Studio Photo Carousel -->
+                    <section class="py-16 border-t border-studio-bronze/20" aria-labelledby="studio-gallery-title">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                            <div class="text-center">
+                                <span class="text-studio-bronze font-semibold text-xs uppercase tracking-widest block mb-2">Inside Ishara Studio</span>
+                                <h2 id="studio-gallery-title" class="text-3xl font-extrabold text-white animate__animated animate__fadeInUp">A Space Made for Great Sound</h2>
+                                <p class="text-studio-muted text-sm mt-3">Take a look at our recording rooms, equipment, and studio sessions.</p>
+                            </div>
+                            <div id="studio-gallery" class="carousel slide carousel-fade studio-gallery-carousel overflow-hidden rounded-3xl border border-studio-bronze/30 shadow-2xl" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="hover" aria-label="Ishara Studio photo gallery">
+                                <div class="carousel-indicators" aria-label="Choose a studio photo"></div>
+                                <div class="carousel-inner"></div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#studio-gallery" data-bs-slide="prev" aria-label="Previous photo">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#studio-gallery" data-bs-slide="next" aria-label="Next photo">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Featured Playlists Section Quick Preview -->
+                    <section class="py-16 bg-studio-800/60 border-t border-studio-bronze/20">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                            <div class="flex flex-col md:flex-row md:items-end justify-between">
+                                <div>
+                                    <span class="text-studio-bronze font-semibold text-xs uppercase tracking-widest block mb-2">Featured Media</span>
+                                    <h2 class="text-3xl font-extrabold text-white">Official YouTube Playlists</h2>
+                                </div>
+                                <button onclick="switchPage('playlists')" class="mt-4 md:mt-0 text-xs font-semibold text-studio-gold hover:text-white transition flex items-center gap-2">
+                                    View All Playlists <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <a href="https://m.youtube.com/playlist?list=PLq5ra5x8B8uzzE_21nRnP3MTUJwMnbGkC&ra=m" target="_blank" class="group bg-studio-800 rounded-2xl overflow-hidden border border-studio-bronze/30 hover:border-red-500 transition shadow-xl block animate__animated animate__fadeInUp">
+                                    <div class="relative h-56 overflow-hidden">
+                                        <img src="thumbnail.jpg" alt="Croyants de béréé Thumbnail" onerror="this.src='https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=600&q=80'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-studio-900 via-transparent to-transparent"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <div class="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                                                <i class="fa-solid fa-play text-xl ml-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-6 space-y-2">
+                                        <h3 class="text-xl font-bold text-white group-hover:text-red-400 transition">Croyants de béréé</h3>
+                                        <p class="text-xs text-studio-muted">Séries de prédication et enseignements spirituels ("Rebâtissons la muraille").</p>
+                                    </div>
+                                </a>
+
+                                <a href="https://m.youtube.com/playlist?list=PLq5ra5x8B8uwrBuSYG-X7Z-mMwsKSn_41&ra=m" target="_blank" class="group bg-studio-800 rounded-2xl overflow-hidden border border-studio-bronze/30 hover:border-red-500 transition shadow-xl block animate__animated animate__fadeInUp" style="--animate-delay: 0.15s;">
+                                    <div class="relative h-56 overflow-hidden bg-black flex items-center justify-center">
+                                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80" alt="Ishara live recording" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-500">
+                                        <div class="absolute inset-0 bg-gradient-to-t from-studio-900 via-transparent to-transparent"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center">
+                                            <div class="w-14 h-14 rounded-full bg-red-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                                                <i class="fa-solid fa-play text-xl ml-1"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="p-6 space-y-2">
+                                        <h3 class="text-xl font-bold text-white group-hover:text-red-400 transition">ishara live recording</h3>
+                                        <p class="text-xs text-studio-muted">Exclusivités live, sessions studio et captations sonores de haute qualité.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-studio-800 border-t border-studio-bronze/20 pt-14 pb-10 text-studio-muted text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-studio-bronze flex items-center justify-center text-white">
+                            <i class="fa-solid fa-microphone-lines"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white tracking-wider">ISHARA STUDIO</span>
+                    </div>
+                    <p class="text-xs text-studio-muted leading-relaxed">
+                        Your professional partner for audio recording, live streaming, event sound reinforcement, rehearsal rooms, and instrument training.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Quick Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a onclick="switchPage('home')" class="hover:text-studio-bronze transition cursor-pointer">Home</a></li>
+                        <li><a onclick="switchPage('about')" class="hover:text-studio-bronze transition cursor-pointer">About Us</a></li>
+                        <li><a onclick="switchPage('services')" class="hover:text-studio-bronze transition cursor-pointer">Services</a></li>
+                        <li><a onclick="switchPage('playlists')" class="hover:text-studio-bronze transition cursor-pointer">YouTube Playlists</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Official Channels</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="https://www.youtube.com/@IsharaStudio1" target="_blank" class="hover:text-red-400 transition flex items-center gap-1.5"><i class="fa-brands fa-youtube text-red-500"></i> YouTube Channel</a></li>
+                        <li><a href="https://www.facebook.com/share/p/1cw8daTV77/" target="_blank" class="hover:text-blue-400 transition flex items-center gap-1.5"><i class="fa-brands fa-facebook text-blue-400"></i> Facebook Page</a></li>
+                        <li><a href="mailto:isharastudio1@gmail.com" class="hover:text-studio-bronze transition flex items-center gap-1.5"><i class="fa-solid fa-envelope text-studio-bronze"></i> isharastudio1@gmail.com</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Direct Booking</h4>
+                    <p class="text-xs text-studio-muted mb-3">Send your booking requests or inquiries directly to our team:</p>
+                    <a href="mailto:isharastudio1@gmail.com" class="text-studio-bronze font-bold hover:underline block">isharastudio1@gmail.com</a>
+                </div>
+            </div>
+            <div class="border-t border-studio-700/60 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-studio-muted">
+                <p>&copy; 2026 Ishara Studio. All rights reserved.</p>
+                <div class="flex space-x-6 mt-3 sm:mt-0">
+                    <a href="https://www.facebook.com/share/p/1cw8daTV77/" target="_blank" class="hover:text-studio-bronze"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/@IsharaStudio1" target="_blank" class="hover:text-studio-bronze"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

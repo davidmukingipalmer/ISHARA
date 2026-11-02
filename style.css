@@ -1,0 +1,101 @@
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #0f0c0b;
+            color: #f3f0ec;
+            overflow-x: hidden;
+        }
+        .studio-gallery-carousel .carousel-item img {
+            width: 100%;
+            height: min(68vh, 620px);
+            min-height: 320px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .studio-gallery-carousel .carousel-item::after {
+            position: absolute;
+            inset: 35% 0 0;
+            background: linear-gradient(transparent, rgba(15, 12, 11, 0.9));
+            content: "";
+            pointer-events: none;
+        }
+        .studio-gallery-carousel .carousel-caption {
+            z-index: 1;
+            bottom: 2rem;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+        }
+        .studio-gallery-carousel .carousel-caption h3 {
+            color: #fff;
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 800;
+        }
+        .studio-gallery-carousel .carousel-caption p {
+            color: #f3f0ec;
+            font-size: clamp(0.75rem, 1.5vw, 1rem);
+            margin-bottom: 0;
+        }
+        .studio-gallery-carousel .carousel-indicators {
+            z-index: 2;
+        }
+        .studio-gallery-carousel .carousel-control-prev,
+        .studio-gallery-carousel .carousel-control-next {
+            z-index: 2;
+        }
+        .page-transition {
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0c0b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #332924;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c59b67;
+        }
+
+        @media (max-width: 639px) {
+            .studio-gallery-carousel .carousel-item img {
+                height: 360px;
+                min-height: 360px;
+            }
+
+            .studio-gallery-carousel .carousel-caption {
+                bottom: 2.5rem;
+                padding: 0 2.5rem;
+            }
+
+            #rental-modal-body {
+                grid-template-columns: minmax(0, 1fr);
+                grid-auto-rows: max-content;
+                align-content: start;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+                overscroll-behavior-y: contain;
+                touch-action: pan-y;
+            }
+
+            #rental-modal-body > .rental-item-card {
+                min-width: 0;
+                align-self: start;
+            }
+
+            #rental-modal-body .rental-item-image {
+                height: auto;
+                aspect-ratio: 1;
+            }
+        }
+    
