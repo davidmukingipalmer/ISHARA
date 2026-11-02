@@ -23,7 +23,7 @@ function toggleMobileMenu() {
     mobileMenu.classList.add('hidden');
 }
 
-const homeAudioPlayer = document.querySelector('.home-audio-player');
+const homeAudioPlayer = document.getElementById('home-audio-player');
 if (homeAudioPlayer) {
     homeAudioPlayer.addEventListener('play', () => {
         showToast('Audio Playing', 'Ishara Live Session Mix is now playing.');
