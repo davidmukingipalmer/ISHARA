@@ -135,26 +135,21 @@
                                     <p class="text-[11px] text-studio-muted">Ishara Studio Master</p>
                                 </div>
                             </div>
-                            <!-- <div class="flex items-center gap-5 text-studio-light">
-                                <button onclick="showToast('Shuffle', 'Playlist shuffled.')" class="hover:text-studio-bronze transition"><i class="fa-solid fa-shuffle text-xs"></i></button>
-                                <button onclick="showToast('Previous', 'Previous track.')" class="hover:text-studio-bronze transition"><i class="fa-solid fa-backward-step"></i></button>
-                                <button id="play-btn" onclick="toggleAudio()" class="w-10 h-10 rounded-full bg-studio-bronze text-white flex items-center justify-center hover:scale-105 transition shadow-md">
-                                    <i id="play-icon" class="fa-solid fa-play"></i>
+                            <div class="flex items-center gap-5 text-studio-light">
+                                <button id="play-btn" type="button" aria-label="Play audio" aria-pressed="false" class="w-10 h-10 rounded-full bg-studio-bronze text-white flex items-center justify-center hover:scale-105 transition shadow-md">
+                                    <i id="play-icon" class="fa-solid fa-play" aria-hidden="true"></i>
                                 </button>
-                                <button onclick="showToast('Next', 'Next track.')" class="hover:text-studio-bronze transition"><i class="fa-solid fa-forward-step"></i></button>
-                                <a href="https://www.youtube.com/@IsharaStudio1" target="_blank" class="text-red-400 hover:text-red-300" title="YouTube"><i class="fa-brands fa-youtube text-base"></i></a>
+                                <a href="https://www.youtube.com/@IsharaStudio1" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300" title="YouTube"><i class="fa-brands fa-youtube text-base"></i></a>
                             </div>
                             <div class="flex items-center gap-3 w-full sm:w-64">
-                                <span id="current-time" class="text-[10px] text-studio-muted">0:30</span>
-                                <div class="flex-1 bg-studio-700 h-1.5 rounded-full overflow-hidden cursor-pointer" onclick="seekAudio(event)">
-                                    <div id="progress-bar" class="bg-studio-bronze h-full w-[30%] transition-all"></div>
-                                </div>
-                                <span class="text-[10px] text-studio-muted">3:45</span>
-                            </div> -->
-                            <audio id="home-audio-player" class="home-audio-player" controls aria-label="Ishara Live Session Mix">
-  <source src="audio.mp3" type="audio/mpeg" loop="True">
-  Your browser does not support the audio element.
-</audio>
+                                <span id="current-time" class="text-[10px] text-studio-muted">0:00</span>
+                                <input id="audio-progress" type="range" min="0" max="0" step="0.1" value="0" aria-label="Audio progress" class="flex-1">
+                                <span id="duration-time" class="text-[10px] text-studio-muted">0:00</span>
+                            </div>
+                            <audio id="home-audio-player" preload="metadata" hidden aria-label="Ishara Live Session Mix">
+                                <source src="audio.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
 
                         </div>
                     </section>

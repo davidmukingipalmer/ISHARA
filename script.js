@@ -1,7 +1,3 @@
-let isPlaying = false;
-let audioTimer = null;
-let progressVal = 30;
-
 function showToast(title, msg) {
     const toast = document.getElementById('toast');
     document.getElementById('toast-title').innerText = title;
@@ -25,9 +21,73 @@ function toggleMobileMenu() {
 
 const homeAudioPlayer = document.getElementById('home-audio-player');
 if (homeAudioPlayer) {
+    const playButton = document.getElementById('play-btn');
+    const playIcon = document.getElementById('play-icon');
+    const currentTimeDisplay = document.getElementById('current-time');
+    const durationDisplay = document.getElementById('duration-time');
+    const audioProgress = document.getElementById('audio-progress');
+
+    function formatAudioTime(time) {
+        if (!Number.isFinite(time)) {
+            return '0:00';
+        }
+        const minutes = Math.floor(time / 60);
+        const seconds = Math.floor(time % 60);
+        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    function updateAudioProgress() {
+        currentTimeDisplay.textContent = formatAudioTime(homeAudioPlayer.currentTime);
+        audioProgress.value = Number.isFinite(homeAudioPlayer.currentTime)
+            ? String(homeAudioPlayer.currentTime)
+            : '0';
+    }
+
+    function updateAudioDuration() {
+        const duration = Number.isFinite(homeAudioPlayer.duration) ? homeAudioPlayer.duration : 0;
+        durationDisplay.textContent = formatAudioTime(duration);
+        audioProgress.max = String(duration);
+        audioProgress.disabled = duration === 0;
+    }
+
+    playButton.addEventListener('click', async () => {
+        if (homeAudioPlayer.paused) {
+            try {
+                await homeAudioPlayer.play();
+            } catch (error) {
+                console.error('Unable to play the audio.', error);
+                showToast('Playback unavailable', 'The audio could not be played.');
+            }
+        } else {
+            homeAudioPlayer.pause();
+        }
+    });
+
     homeAudioPlayer.addEventListener('play', () => {
+        playIcon.classList.replace('fa-play', 'fa-pause');
+        playButton.setAttribute('aria-label', 'Pause audio');
+        playButton.setAttribute('aria-pressed', 'true');
         showToast('Audio Playing', 'Ishara Live Session Mix is now playing.');
     });
+    homeAudioPlayer.addEventListener('pause', () => {
+        playIcon.classList.replace('fa-pause', 'fa-play');
+        playButton.setAttribute('aria-label', 'Play audio');
+        playButton.setAttribute('aria-pressed', 'false');
+    });
+    homeAudioPlayer.addEventListener('ended', () => {
+        playIcon.classList.replace('fa-pause', 'fa-play');
+        playButton.setAttribute('aria-label', 'Play audio');
+        playButton.setAttribute('aria-pressed', 'false');
+        updateAudioProgress();
+    });
+    homeAudioPlayer.addEventListener('loadedmetadata', updateAudioDuration);
+    homeAudioPlayer.addEventListener('durationchange', updateAudioDuration);
+    homeAudioPlayer.addEventListener('timeupdate', updateAudioProgress);
+    audioProgress.addEventListener('input', () => {
+        homeAudioPlayer.currentTime = Number(audioProgress.value);
+    });
+    updateAudioDuration();
+    updateAudioProgress();
 }
 
 const studioGallery = document.getElementById('studio-gallery');
@@ -232,40 +292,3 @@ return;
     }
     window.location.href = pagePath;
 }
-
-        // Audio Player Simulation
-        function toggleAudio() {
-            isPlaying = !isPlaying;
-            const icon = document.getElementById('play-icon');
-            if (isPlaying) {
-                icon.classList.remove('fa-play');
-                icon.classList.add('fa-pause');
-                showToast('Playing', 'Ishara Live Session Mix');
-
-                audioTimer = setInterval(() => {
-                    progressVal += 1;
-                    if (progressVal > 225) progressVal = 0;
-                    const mins = Math.floor(progressVal / 60);
-                    const secs = progressVal % 60;
-                    document.getElementById('current-time').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-                    const pct = (progressVal / 225) * 100;
-                    document.getElementById('progress-bar').style.width = `${pct}%`;
-                }, 1000);
-            } else {
-                icon.classList.remove('fa-pause');
-                icon.classList.add('fa-play');
-                clearInterval(audioTimer);
-                showToast('Paused', 'Audio paused.');
-            }
-        }
-
-        function seekAudio(e) {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const clickX = e.clientX - rect.left;
-            const pct = clickX / rect.width;
-            progressVal = Math.floor(pct * 225);
-            const mins = Math.floor(progressVal / 60);
-            const secs = progressVal % 60;
-            document.getElementById('current-time').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-            document.getElementById('progress-bar').style.width = `${pct * 100}%`;
-        }
