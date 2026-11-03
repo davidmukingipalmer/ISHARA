@@ -148,7 +148,7 @@ const rentalData = {
                 desc: "Explore our collection of professional musical instruments available for rent.",
                 items: [
                     { name: "Piano", desc: "Professional weighted-key digital stage piano.", rate: "$35 / day", img: "instruments/piano-rental.jpeg" },
-                    { name: "Guitars", desc: "Acoustic, electric, and bass guitars with pristine tuning.", rate: "$20 / day", img: "instruments/guitars.jpeg" },
+                    { name: "Guitars", desc: "Acoustic, electric, and bass guitars with pristine tuning.", rate: "$20 / day", img: "instruments/bass-guitar.jpeg" },
                     { name: "Drum", desc: "Complete acoustic drum kit with cymbals and hardware.", rate: "$45 / day", img: "instruments/drum.jpeg" },
                     { name: "Nexo Speaker", desc: "High-power professional live sound reinforcement speaker.", rate: "$50 / day", img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=600&q=80" },
                     { name: "Sustain pedal for piano", desc: "Heavy-duty metal piano sustain pedal with polarity switch.", rate: "$10 / day", img: "instruments/piano-sustain-pedal.svg" },
